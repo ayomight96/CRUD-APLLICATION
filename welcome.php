@@ -4,11 +4,15 @@ session_start();
 include 'functions.php';
 
 $user = make_array_signin();
+
 $verify = verify_user_exists_signin($user);
+
+
 $_SESSION = session_userdata($verify);
 
-
 if ($verify != 0){
+
+        $verify = verify_user_exists_signin($user);
         print "<h2>Welcome to the Homepage, $verify[0]</h2>";
         print "<br>";
         print "<br>";
