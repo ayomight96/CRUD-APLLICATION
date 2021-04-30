@@ -1,11 +1,7 @@
 <?php
 session_start();
 if ($_POST['password'] == $_POST['password1']){
- /* $password = $_POST['password'];
-  $first_name = $_SESSION ['first_name'];
-  $last_name = $_SESSION ['last_name'];
-  $email = $_SESSION ['email'];
-  print $password; */
+ 
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -34,11 +30,14 @@ if ($_POST['password'] == $_POST['password1']){
         print "<a href=\"signin.php\">Click to return to Sign in page</a>";
     } else {
       echo "Error updating record: " . $conn->error;
-     // header("Location: reset.html");
-     // exit();
-    } 
+     } 
     $conn->close();
     
+  } else {
+    print "Password mismatch";
+    print "<br>";
+    print "<br>"; 
+    print "<a href=\"reset.html\">Click to return to Password reset page</a>";
   }
 
 
