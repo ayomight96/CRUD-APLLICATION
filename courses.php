@@ -3,10 +3,12 @@
 include "functions.php";
 $user = $_SESSION;
 
-$courses = verify_user_courses($user);
+$courses = view_current_courses($user);
 $verify_array = is_array($courses);
+
 print "<h1>WELCOME TO MY COURSES PAGE</h1>";
 print "<br>";
+
 
 if ($verify_array == 1){
     if (count($courses) == 1){
@@ -16,10 +18,10 @@ if ($verify_array == 1){
         print "\"";
         print $courses[0];
         print "\"<br><br>";
-        print "You can enroll for 2 more courses<br>";
+        print "You can enroll for 2 more courses<br><br>";
         print "<a href=\"addindex.php\">Click here to enrol for more courses</a><br><br>";
         print "<a href=\"delete.php\">Click here to delete course</a>";
-    } elseif (count($courses) == 2 && $course[0] != null && $course[1] != null || (count($courses) == 3 && $courses[2] == null) ){
+    } elseif (count($courses) == 2 && $courses[0] != null && $courses[1] != null){
         print "<h2>You are currently enrolled in: ";
         print count($courses);
         print " courses</h2><br>";
@@ -29,10 +31,10 @@ if ($verify_array == 1){
         print "\"";
         print $courses[1];
         print "\"<br><br>"; 
-        print "You can enroll for 1 more course<br>";
+        print "You can enroll for 1 more course<br><br>";
         print "<a href=\"addindex.php\">Click here to enrol for more courses</a><br><br>";
         print "<a href=\"delete.php\">Click here to delete course</a>";   
-    } elseif(count($courses) == 3 && $courses[2] != 0){
+    } elseif(count($courses) == 3 && $courses[0] != null && $courses[1] != 0 && $courses[2] != 0){
         
         print "<h2>You are currently enrolled in: ";
         print count($courses);
@@ -47,7 +49,7 @@ if ($verify_array == 1){
         print "\"";
         print $courses[2];
         print "\"<br><br>";  
-        print "<h4>You can't enroll for any more course</h4><br>";
+        print "<h4>You can't enroll for any more course</h4><br><br>";
         print "<a href=\"delete.php\">Click here to delete course</a>";
     }
     
