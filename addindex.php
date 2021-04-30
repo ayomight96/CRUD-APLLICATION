@@ -25,15 +25,15 @@ form {
         
         <form id = "signup" method="post" action="add.php"><br><br><br><br><br><br><br><br>
         
-        <input type="checkbox" id="php" name="php" value="php">
+        <input type="checkbox" id="php" name="php" value="PHP">
         <label for="php"> PHP COURSE</label>
-        <input type="checkbox" id="java" name="java" value="java">
+        <input type="checkbox" id="java" name="java" value="JAVA">
         <label for="java"> JAVA COURSE</label>
-        <input type="checkbox" id="java_script" name="java_script" value="java_script">
+        <input type="checkbox" id="java_script" name="java_script" value="JAVA SCRIPT">
         <label for="java_script"> JAVASCRIPT COURSE</label>
-        <input type="checkbox" id="graphics" name="graphics" value="graphics">
+        <input type="checkbox" id="graphics" name="graphics" value="GRAPHICS DESIGN">
         <label for="graphics"> GRAPHICS DESIGN COURSE</label>
-        <input type="checkbox" id="python" name="python" value="python">
+        <input type="checkbox" id="python" name="python" value="PYTHON">
         <label for="python"> PYTHON COURSE</label><br><br><br><br><br><br>
 
         <button style="height:40px;width:200px" type = "submit">Enroll</button>
