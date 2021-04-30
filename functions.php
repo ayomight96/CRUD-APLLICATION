@@ -95,7 +95,7 @@ function store_file($user){
       $conn->close();
     }
     
-    function reset_password($password, $user){
+function reset_password($password, $user){
       if ($password[0] == $password[1]){
         
         $servername = "localhost";
@@ -124,7 +124,7 @@ function store_file($user){
       
     }
     
-    function verify_user_courses($user){
+function verify_user_courses($user){
       $servername = "localhost";
       $username = "root";
       $password = "";
@@ -138,21 +138,34 @@ function store_file($user){
       }
       $password = $user['password'];
       $email = $user ['email'];
+      
       $sql = "SELECT `course_1`, `course_2`, `course_3`  FROM `userdata` WHERE email='$email' && password='$password'";
       $result = $conn->query($sql);
-      
+      $user ['course_1'] = $user['course_1'];
+      $user ['course_2'] = $user['course_2'];
+      $user ['course_3'] = $user['course_3'];
       if ($result->num_rows > 0) {
         // output data of each row into the array row
         $row = $result->fetch_array(MYSQLI_NUM);
-          $user = $row; 
-          return $user;    
-        
+          $user = $row;
+           if ($user['course_1'] == null &&  $user['course_2'] == null && $user['course_3'] == null){
+             return 0;
+           } elseif ($user['course_1'] != null && $user['course_2'] == null && $user['course_3'] == null){
+            $user1 [0] = $user['course_1'];
+            return $user1;
+           } elseif ($user['course_1'] != null && $user['course_2'] != null && $user['course_3'] == null){
+             $user1 [0] = $user['course_1']; 
+             $user1 [1] = $user['course_2'];
+             return $user1;
+           } elseif ($user['course_1'] != null && $user['course_2'] != null && $user['course_3'] != null){
+            return $user; 
+           }
       } else {
         return 0;
     }
   }
 
-  function add_course_2($user){
+function add_course_2($user){
     $servername = "localhost";
         $username = "root";
         $password = "";
@@ -164,7 +177,7 @@ function store_file($user){
         if ($conn->connect_error) {
           die("Connection failed: " . $conn->connect_error);
         }
-  
+
         $sql = "UPDATE `userdata` SET `course_2` = '$user[course_2]' WHERE first_name='$user[first_name]' && last_name='$user[last_name]' && email='$user[email]'";
   
         if ($conn->query($sql) === TRUE) {
@@ -177,7 +190,7 @@ function store_file($user){
         $conn->close();
       }
 
-      function add_course_3($user){
+function add_course_3($user){
         $servername = "localhost";
             $username = "root";
             $password = "";
@@ -202,7 +215,7 @@ function store_file($user){
             $conn->close();
           }
 
-          function add_course_1($user){
+function add_course_1($user){
             $servername = "localhost";
                 $username = "root";
                 $password = "";
@@ -227,7 +240,7 @@ function store_file($user){
                 $conn->close();
               }
 
-              function add_course_1_2($user){
+function add_course_1_2($user){
                 $servername = "localhost";
                     $username = "root";
                     $password = "";
@@ -252,7 +265,7 @@ function store_file($user){
                     $conn->close();
                   }
 
-                  function add_course_2_3($user){
+function add_course_2_3($user){
                     $servername = "localhost";
                         $username = "root";
                         $password = "";
@@ -277,7 +290,7 @@ function store_file($user){
                         $conn->close();
                       }
 
-                      function add_course_1_2_3($user){
+function add_course_1_2_3($user){
                         $servername = "localhost";
                             $username = "root";
                             $password = "";
@@ -303,7 +316,7 @@ function store_file($user){
                           }
     
   
-    function verify_user_exists_signin($user){
+function verify_user_exists_signin($user){
         $servername = "localhost";
         $username = "root";
         $password = "";
@@ -331,7 +344,7 @@ function store_file($user){
         $conn->close();
       }
 
-      function view_current_courses($user){
+function view_current_courses($user){
         if ($user['course_1'] != null && $user['course_2'] == null && $user['course_3'] == null){
           $courses = [$user['course_1']];
           return $courses;
@@ -346,7 +359,7 @@ function store_file($user){
         }
       }
 
-      function all_courses(){
+function all_courses(){
               $servername = "localhost";
               $username = "root";
               $password = "";
@@ -375,7 +388,7 @@ function store_file($user){
       }
       //this function returns an array of courses that the user has not added yet
       //it takes in the array of courses athe user has added and the array of total number of courses
-      function view_available_courses($courses, $courses1){
+function view_available_courses($courses, $courses1){
           //this checks if the number of courses the user has taken is up to 1
           // and deletes it from the total number of courses finally returning the courses left
         if (count($courses) == 1){
@@ -434,9 +447,25 @@ function course_num_add($courses, $courses1){
         return 0;
       }
     
-  function check_if_course_exist($courses){
+    }
 
-
+function checks_courses_selected_1($user, $user1){
+      $present = in_array($user, $user1);
+      
+      if ($present == 1){
+          return 1;
+      } else{ 
+          return 0;
+      }
   }
+  
+function checks_courses_selected_2($user, $user2, $user1){
+      $present = in_array($user, $user1);
+      $present1 = in_array($user2, $user1);
+      if ($present == 1 && $present1 == 1 || $present == 1 && $present1 != 1 || $present != 1 && $present1 == 1 ){
+          return 1;
+      } else {
+          return 0;
+      }
   }
   ?>
