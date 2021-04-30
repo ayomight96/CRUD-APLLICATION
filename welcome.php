@@ -7,10 +7,17 @@ $user = make_array_signin();
 
 $verify = verify_user_exists_signin($user);
 
+if ($verify == 0){
+    print "Your email or password is incorrect";
+    print "<br>";
+    print "<br>"; 
+    print "<a href=\"signin.php\">Click to return to Sign in page</a>";
 
-$_SESSION = session_userdata($verify);
+} else{
 
-if ($verify != 0){
+        $_SESSION = session_userdata($verify);
+
+
 
         $verify = verify_user_exists_signin($user);
         print "<h2>Welcome to the Homepage, $verify[0]</h2>";
@@ -30,12 +37,7 @@ if ($verify != 0){
         print "</table>\n";
         print "<br>";
         print "<br>";
-        //print_r($_SESSION);
+        
 
-} else{
-    print "Your email or password is incorrect";
-    print "<br>";
-    print "<br>"; 
-    print "<a href=\"signin.php\">Click to return to Sign in page</a>";
 } 
 ?>
