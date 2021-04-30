@@ -173,6 +173,7 @@ if (count($courses) == 1){
                     }
             }
         } 
+} 
 } elseif ($courses == 0) {
     
     if (count($_POST) > 3){
@@ -192,7 +193,7 @@ if (count($courses) == 1){
         $user['course_2'] = $_POST[$new_array[1]];
         $user['course_3'] = $_POST[$new_array[2]];
 
-        $course_confirm = add_course_1_2_3($_SESSION);
+        $course_confirm = add_course_1_2_3($user);
         
         if ($course_confirm == 1){
                print "Your courses has been successfully added!<br><br>";
@@ -207,7 +208,7 @@ if (count($courses) == 1){
                     $user['course_1'] = $_POST[$new_array[0]];
                     $user['course_2'] = $_POST[$new_array[1]];
 
-                    $course_confirm = add_course_1_2($_SESSION);
+                    $course_confirm = add_course_1_2($user);
 
                     if ($course_confirm == 1){
                         print "Your courses has been successfully added!<br><br>";
@@ -221,7 +222,7 @@ if (count($courses) == 1){
         $new_array = array_keys($_POST);
                     $user['course_1'] = $_POST[$new_array[0]];
                     
-                    $course_confirm = add_course_1($_SESSION);
+                    $course_confirm = add_course_1($user);
 
                     if ($course_confirm == 1){
                         print "Your courses has been successfully added!<br><br>";
@@ -233,7 +234,6 @@ if (count($courses) == 1){
                     }
     }
 }
-} 
 
 } else {
    
